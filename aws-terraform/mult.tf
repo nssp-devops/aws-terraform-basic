@@ -1,7 +1,7 @@
 users = [
-   "user1" : [ "arn:aws:iam::992679772645:group/S3bucketonly","" ]
-   "user2": [ "arn:aws:iam::992679772645:group/S3bucketonly" ],
-   "user3": [ "arn:aws:iam::992679772645:group/S3bucketonly" ]
+   "user1" : [ "arn:aws:iam::9779267977264588:group/S3bucketonly","" ]
+   "user2": [ "arn:aws:iam::9977267977264599:group/S3bucketonly" ],
+   "user3": [ "arn:aws:iam::9928867977264588:group/S3bucketonly" ]
 ]
 
 
