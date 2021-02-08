@@ -4,10 +4,10 @@ variable "user_list" {
     default = ["srini007"]
 }
 
-# variable "user_group" {
-#     type = string
-#     default = "devops3.0"
-# }
+variable "user_group" {
+    type = string
+    default = "devops3.0"
+}
 #####################Provider###################
 provider "aws" {
   region = "us-east-1"
@@ -15,10 +15,10 @@ provider "aws" {
 
 #####################Groups###################
 
-# resource "aws_iam_group" "user_group" {
-#     name = var.user_group
-#     path = "/system/"
-# }
+resource "aws_iam_group" "user_group" {
+    name = var.user_group
+    path = "/system/"
+}
 ###################RESOURCE################
 resource "aws_iam_user" "user" {
     count = "${length(var.user_list)}"
