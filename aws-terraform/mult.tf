@@ -5,6 +5,7 @@ users = [
 ]
 
 
+
 resource "aws_iam_user" "list" {
   for_each      = var.users
   name          = each.key
