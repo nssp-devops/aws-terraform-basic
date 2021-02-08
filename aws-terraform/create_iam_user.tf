@@ -1,13 +1,13 @@
 #####################VARIABLE#################
 variable "user_list" {
     type = list(string)
-    default = ["nitu", "sandy", "Pannu"]
+    default = ["srini007"]
 }
 
-variable "user_group" {
-    type = string
-    default = "devops3.0"
-}
+# variable "user_group" {
+#     type = string
+#     default = "devops3.0"
+# }
 #####################Provider###################
 provider "aws" {
   region = "us-east-1"
@@ -15,10 +15,10 @@ provider "aws" {
 
 #####################Groups###################
 
-resource "aws_iam_group" "user_group" {
-    name = var.user_group
-    path = "/system/"
-}
+# resource "aws_iam_group" "user_group" {
+#     name = var.user_group
+#     path = "/system/"
+# }
 ###################RESOURCE################
 resource "aws_iam_user" "user" {
     count = "${length(var.user_list)}"
@@ -29,7 +29,11 @@ resource "aws_iam_user" "user" {
 resource "aws_iam_group_membership" "user_group" {
   name = "tf-testing-group-membership"
   users = var.user_list
-  group = aws_iam_group.user_group.name
+  #group = aws_iam_group.user_group.name
+  group = "devops3.0"
+  depends_on = [
+      aws_iam_user.user,
+  ]
 }
 
 resource "aws_iam_user_policy_attachment" "AmazonS3OutpostsFullAccess" {
