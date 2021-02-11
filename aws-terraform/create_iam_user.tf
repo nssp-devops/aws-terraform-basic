@@ -1,7 +1,7 @@
 #####################VARIABLE#################
 variable "user_list" {
     type = list(string)
-    default = ["nitu", "sandy", "Pannu"]
+    default = ["nick", "ssandy", "ppannu"]
 }
 
 variable "user_group" {
@@ -30,6 +30,12 @@ resource "aws_iam_group_membership" "user_group" {
   name = "tf-testing-group-membership"
   users = var.user_list
   group = aws_iam_group.user_group.name
+}
+
+resource "aws_iam_group_membership" "existing_groups" {
+  name = "exiting-group-membership"
+  users = var.user_list
+  group = "S3bucketonly"
 }
 
 resource "aws_iam_user_policy_attachment" "AmazonS3OutpostsFullAccess" {
