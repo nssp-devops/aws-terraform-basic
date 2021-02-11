@@ -59,6 +59,10 @@ resource "aws_iam_user_policy_attachment" "AmazonS3OutpostsFullAccess" {
 }
 
 #####################OUTPUT###############
-output "user_arn" {
-    value = "${aws_iam_user.user.*.arn}"  
+output "information" {
+  value = "${formatlist(
+    "%s and %s", 
+    (aws_iam_user.user.*.arn),
+    (aws_iam_group.user_group.name)
+  )}"
 }
