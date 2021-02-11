@@ -26,6 +26,16 @@ resource "aws_iam_user" "user" {
     path = "/system/"
 }
 
+resource "aws_iam_group_policy_attachment" "aws_config_attach" {
+  group = "S3bucketonly"
+  for_each = toset([
+    "arn:aws:iam::aws:policy/AmazonEC2FullAccess", 
+    "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+    "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+  ])
+  policy_arn = each.value
+}
+
 resource "aws_iam_group_membership" "user_group" {
   name = "tf-testing-group-membership"
   users = var.user_list
