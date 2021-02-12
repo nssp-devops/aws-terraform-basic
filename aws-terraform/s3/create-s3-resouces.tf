@@ -29,5 +29,9 @@ resource "aws_s3_bucket_object" "object" {
 
 #####################OUTPUT###############
 output "s3-bucket-url" {
-    value = "${aws_s3_bucket.b}"  
+  value = "${formatlist(
+    "%s/%s", 
+    "https://${aws_s3_bucket.b.bucket_domain_name}",
+    "${aws_s3_bucket_object.object.key}"
+  )}"
 }
