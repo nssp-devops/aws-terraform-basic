@@ -46,9 +46,9 @@ POLICY
 }
 
 resource "aws_s3_bucket_object" "nssp_folder" {
-    bucket = var.s3_bucket
-    acl    = "private"
-    key    = "devops_folder"
-    source = "${path.module}/folder1/srini.txt"
-    etag = "${filemd5("${path.module}/folder1/srini.txt")}"
+    bucket = aws_s3_bucket.s3_b.id
+    acl    = "public-read"
+    key    = "srini.txt"
+    source = "./folder1/srini.txt"
+    etag = filemd5("./folder1/srini.txt")
 }
